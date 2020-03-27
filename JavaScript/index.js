@@ -32,7 +32,7 @@ const message = name => 'Hi ' + name;
 
 console.log(message('Mario'));
 
-const divided = (a, b ) => a / b
+const divided = (a, b) => a / b
 console.log(divided(4, 2))
 
 //immutable function
@@ -104,4 +104,74 @@ console.log(nums2);
 //const sum = numbers.reduce((acumulador, num) => {
   //return acumulador + num
 //}, 0)
+
+//Promise
+const val = true;
+
+const stop1 = new Promise((resolve, reject) => {
+  setTimeout(() =>{
+    console.log(1)
+    if(!val){
+      reject('erro')
+      return
+    }
+    setTimeout(() =>{
+      console.log(2)
+      resolve('Fim')
+      
+    }, 2000)
+  }, 2000)
+})
+
+function stop2(time){
+  return new Promise((resolve, reject) =>{
+    setTimeout(() =>{
+      console.log(1)
+      if(!val){
+        reject('erro')
+        return
+      }
+    }, 2000)
+  }, 2000)
+}
+stop1.then(message => console.log(message))
+.catch(error => console.log(error))
+
+//Await & Async
+async function exe01(){
+  //const count = ''
+  try{
+    await count(1000)
+    console.log('counting 1')
+    await count(2000)
+    console.log('counting 2')
+    await count(3000)
+    console.log('counting 3')
+  }catch(error){
+    console.log(error);
+  }
+}
+exe01()
+
+//HOF - Hight order Function
+const par = [1,2,3,,4,,5,6,7,8,9].filter(num => num % 2 == 0)
+  console.log(par)
+
+const impar = [1,2,3,4,5,6,7,8,9].filter(num => num % 2 != 0)
+  console.log(impar)
+  
+  function sum(x){
+    return function(y){
+      return x + y;
+    }
+  }
+  const addTwo = sum(23);
+  console.log(addTwo(10));
+  //Or 
+  const sum2 = x => y => z => x + y + z
+  console.log(sum2(23)(34)(2))
+
+
+
+
 
